@@ -119,24 +119,26 @@
         }
 
         .skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
             margin-top: 2rem;
         }
 
         .skill {
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid #667eea30;
+            color: #4a5568;
+            font-weight: 500;
+            transition: all 0.3s;
         }
 
         .skill:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea25 0%, #764ba225 100%);
+            transform: translateY(-2px);
         }
 
         .experience-item, .education-item {
@@ -645,9 +647,8 @@
             </div>
             <div class="footer-section">
                 <h3>Connect</h3>
-                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-                <a href="https://twitter.com/yourhandle" target="_blank">Twitter</a>
+                <a href="https://github.com/bhirokia" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/robert-albani" target="_blank">LinkedIn</a>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
