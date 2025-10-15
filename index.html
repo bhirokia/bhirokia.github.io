@@ -273,6 +273,17 @@
             font-weight: 300;
         }
 
+        .item-location {
+            color: #94a3b8;
+            font-size: 0.9em;
+            margin-top: 5px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .item-location::before {
+            content: '📍 ';
+        }
+
         .item-description {
             color: #94a3b8;
             font-size: 0.95em;
@@ -295,9 +306,7 @@
             font-size: 1.15em;
             line-height: 1.9;
             color: #cbd5e1;
-            max-width: 1000px;
-            width: 100%;
-            margin: 0 auto 20px auto;
+            max-width: 750px;
             padding: 30px;
             background: rgba(20, 20, 20, 0.5);
             border-radius: 4px;
@@ -548,7 +557,7 @@
                 <h2>about</h2>
                 <div class="about-text">
                     <p style="margin-bottom: 15px;">
-                        Hello! I'm Bobby, a Senior at MIT. I like long walks on the beach, thinking about owning a dog someday, and 
+                        Hello! I'm Robert, a Senior at MIT. I like long walks on the beach, thinking about owning a dog someday, and 
                         trying to code good.
                     </p>
                     <p>
@@ -565,7 +574,7 @@
                         <div class="item-main-info">
                             <div class="item-header">
                                 <span class="item-title">Bachelor of Science in AI and Decision Making</span>
-                                <span class="item-date">2017 - 2021</span>
+                                <span class="item-date">2022 - 2026</span>
                             </div>
                             <div class="item-subtitle">Massachusetts Institute of Technology</div>
                         </div>
@@ -573,10 +582,10 @@
                     </div>
                     <div class="item-details">
                         <div class="item-description">
-                            <p>
+                            <!-- <p>
                                 Focused on software engineering, algorithms, and data structures. 
                                 Graduated with honors and completed capstone project on machine learning applications.
-                            </p>
+                            </p> -->
                             <ul>
                                 <li>GPA: 4.7/5.0</li>
                                 <li>Relevant Coursework: Data Structures, Algorithms, Database Systems, Web Development</li>
@@ -584,6 +593,28 @@
                             </ul>
                         </div>
                     </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Masters of Engineering in AI and Decision Making</span>
+                                <span class="item-date">2026 - 2027</span>
+                            </div>
+                            <div class="item-subtitle">Massachusetts Institute of Technology</div>
+                        </div>
+                        <!-- <span class="expand-icon">▼</span> -->
+                    </div>
+                    <!-- <div class="item-details">
+                        <div class="item-description">
+                            <ul>
+                                <li>GPA: 4.7/5.0</li>
+                                <li>Relevant Coursework: Data Structures, Algorithms, Database Systems, Web Development</li>
+                                <li>Minors: Mechanical Engineering, Music</li>
+                            </ul>
+                        </div>
+                    </div> -->
                 </div>
             </section>
 
@@ -594,7 +625,8 @@
                         <div class="item-main-info">
                             <div class="item-header">
                                 <span class="item-title">Undergraduate Researcher</span>
-                                <span class="item-date">July 2025 - Present</span>
+                                <span class="item-date">June 2025 - Present</span>
+                                <div class="item-location">Cambridge, MA</div>
                             </div>
                             <div class="item-subtitle">MIT Sports Lab</div>
                         </div>
@@ -603,14 +635,14 @@
                     <div class="item-details">
                         <div class="item-description">
                             <p>
-                                Developed and maintained web applications using modern JavaScript frameworks. 
-                                Collaborated with cross-functional teams to deliver high-quality software solutions.
-                                Implemented new features that improved user engagement by 30% and reduced load times by 40%.
+                                Developed advanced optimization algorithms to improve scheduling for MIT's Division III sports teams.
+                                Worked on a separate project to create an online Sports Engineering class for MIT students online. Created 
+                                and tested interactive coding assignments and projects to teach students about sports analytics and machine learning principles.
                             </p>
                             <ul>
-                                <li>Built responsive web applications using React and Node.js</li>
-                                <li>Optimized database queries resulting in 50% faster data retrieval</li>
-                                <li>Mentored junior developers and conducted code reviews</li>
+                                <li>Built two complementary scheduling optimization models — a statistical framework and a Markov Decision Process based solution — to enhance competitive outcomes for MIT's Division III sports teams</li>
+                                <li>Designed and implemented automated optimization methods that strategically maximize national ranking potential, providing coaches with a data-driven scheduling advantage</li>
+                                <li>Tested and designed project for new online Sports Engineering class to help students learn about machine learning fundamentals</li>
                             </ul>
                         </div>
                     </div>
@@ -622,6 +654,7 @@
                             <div class="item-header">
                                 <span class="item-title">Machine Learning Engineer Intern</span>
                                 <span class="item-date">June 2025 - Aug 2025</span>
+                                <div class="item-location">Princeton, NJ</div>
                             </div>
                             <div class="item-subtitle">WonderBotz</div>
                         </div>
@@ -634,9 +667,9 @@
                                 Participated in code reviews and contributed to improving development processes.
                             </p>
                             <ul>
-                                <li>Developed RESTful APIs and integrated third-party services</li>
-                                <li>Wrote unit tests achieving 85% code coverage</li>
-                                <li>Collaborated with designers to implement pixel-perfect UI components</li>
+                                <li>Researched, evaluated, and benchmarked open-source machine learning models to identify scalable replacements for existing automation systems</li>
+                                <li>Designed and implemented a document processing solution through Azure that enhanced internal business automation workflows and reduced reliance on legacy tools</li>
+                                <li>Improved document data extraction accuracy by 15% through fine-tuning open-source visual language models on company datasets</li>
                             </ul>
                         </div>
                     </div>
@@ -648,6 +681,7 @@
                             <div class="item-header">
                                 <span class="item-title">Software Engineer Intern</span>
                                 <span class="item-date">June 2024 - Aug 2024</span>
+                                <div class="item-location">Tokyo, JP</div>
                             </div>
                             <div class="item-subtitle">Bokksu</div>
                         </div>
@@ -657,12 +691,12 @@
                         <div class="item-description">
                             <p>
                                 Assisted in building responsive web applications and implementing new features. 
-                                Participated in code reviews and contributed to improving development processes.
+                                Helped with new SEO initiatives to increase web traffic
                             </p>
                             <ul>
-                                <li>Developed RESTful APIs and integrated third-party services</li>
-                                <li>Wrote unit tests achieving 85% code coverage</li>
-                                <li>Collaborated with designers to implement pixel-perfect UI components</li>
+                                <li>Enhanced website visibility by analyzing 100,000+ product data points and implementing optimized keywords, driving stronger search engine rankings</li>
+                                <li>Streamlined e-commerce operations by developing dynamic Shopify content blocks with HTML/CSS, enabling faster designer updates for seasonal campaigns</li>
+                                <li>Pioneered the integration of generative AI for marketing, producing new image and video assets that reduced reliance on external creative resources</li>
                             </ul>
                         </div>
                     </div>
@@ -674,21 +708,20 @@
                             <div class="item-header">
                                 <span class="item-title">AI Engineer Intern</span>
                                 <span class="item-date">June 2024 - Aug 2024</span>
+                                <div class="item-location">Tokyo, JP</div>
                             </div>
-                            <div class="item-subtitle">HaiMirai | Tokyo, Japan</div>
+                            <div class="item-subtitle">HaiMirai</div>
                         </div>
                         <span class="expand-icon">▼</span>
                     </div>
                     <div class="item-details">
                         <div class="item-description">
                             <p>
-                                Assisted in building responsive web applications and implementing new features. 
-                                Participated in code reviews and contributed to improving development processes.
+                                Worked on a new project to build an AI health companion that can answer user questions about health and wellness.
                             </p>
                             <ul>
-                                <li>Developed RESTful APIs and integrated third-party services</li>
-                                <li>Wrote unit tests achieving 85% code coverage</li>
-                                <li>Collaborated with designers to implement pixel-perfect UI components</li>
+                                <li>Finetuned a custom intent classifier from Hugging Face using PyTorch to accurately categorize 7 types of health-related user queries, improving the AI companion’s response precision</li>
+                                <li>Architected a multi-agent backend system for a demo health application, enabling scalable interactions and supporting pitches to venture capital investors</li>
                             </ul>
                         </div>
                     </div>
@@ -701,23 +734,23 @@
                     <div class="item-summary" onclick="toggleItem(this)">
                         <div class="item-main-info">
                             <div class="item-header">
-                                <span class="item-title">Team Lead</span>
-                                <span class="item-date">September 2020 - May 2021</span>
+                                <span class="item-title">Co-President</span>
+                                <span class="item-date">Sep 2024 - Present</span>
                             </div>
-                            <div class="item-subtitle">Organization/Club Name</div>
+                            <div class="item-subtitle">MIT Japanese Society of Undergraduates</div>
                         </div>
                         <span class="expand-icon">▼</span>
                     </div>
                     <div class="item-details">
                         <div class="item-description">
                             <p>
-                                Led a team of 5 developers in creating a community-focused web application. 
-                                Coordinated project timelines, delegated tasks, and ensured successful project delivery.
+                                Leading a team of 15 members to organize cultural events, language exchange programs, and 
+                                community outreach initiatives to promote Japanese culture on campus.
                             </p>
                             <ul>
-                                <li>Organized weekly team meetings and sprint planning sessions</li>
-                                <li>Managed project timeline and ensured on-time delivery</li>
-                                <li>Facilitated communication between stakeholders and development team</li>
+                                <li>Organize bi-weekly club meetings, club events, and Japanese language learning dinner tables</li>
+                                <li>Mentor younger members from each position in doing their duties</li>
+                                <li>Help organize MIT campus tours for Japanese high school tour groups</li>
                             </ul>
                         </div>
                     </div>
@@ -727,23 +760,21 @@
                     <div class="item-summary" onclick="toggleItem(this)">
                         <div class="item-main-info">
                             <div class="item-header">
-                                <span class="item-title">President</span>
-                                <span class="item-date">August 2019 - May 2020</span>
+                                <span class="item-title">Rush Chair</span>
+                                <span class="item-date">Feb 2024 - Dec 2024</span>
                             </div>
-                            <div class="item-subtitle">Student Organization</div>
+                            <div class="item-subtitle">Pi Lambda Phi Fraternity</div>
                         </div>
                         <span class="expand-icon">▼</span>
                     </div>
                     <div class="item-details">
                         <div class="item-description">
                             <p>
-                                Directed organization activities and initiatives, growing membership by 40% and 
-                                organizing multiple successful technical workshops and networking events.
+                                Organized and led recruitment efforts for the fraternity, resulting in a 15% increase in new members.
                             </p>
                             <ul>
-                                <li>Coordinated 10+ technical workshops attended by 200+ students</li>
-                                <li>Managed budget of $10,000 and secured sponsorships</li>
-                                <li>Built partnerships with local tech companies for career opportunities</li>
+                                <li>Organized events for over 300 potential new members and organized funds between transportation and projects to maintain a budget of $20,000</li>
+                                <li>Led the creation of new policies for voting to optimize time and facilitated discussion within the fraternity of 40 people</li>
                             </ul>
                         </div>
                     </div>
