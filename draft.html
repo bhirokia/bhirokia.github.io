@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Robert Albani - Portfolio</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap');
 
@@ -156,6 +156,7 @@
         section:nth-child(3) { animation-delay: 0.4s; }
         section:nth-child(4) { animation-delay: 0.5s; }
         section:nth-child(5) { animation-delay: 0.6s; }
+        section:nth-child(6) { animation-delay: 0.7s; }
 
         h2 {
             font-family: 'Space Mono', monospace;
@@ -272,6 +273,18 @@
             font-weight: 300;
         }
 
+        .item-location {
+            color: #94a3b8;
+            font-size: 0.85em;
+            margin-left: 8px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .item-location::before {
+            content: '• ';
+            color: #64748b;
+        }
+
         .item-description {
             color: #94a3b8;
             font-size: 0.95em;
@@ -281,15 +294,51 @@
             border-top: 1px solid #1a1a1a;
         }
 
+        .item-description ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .item-description li {
+            margin-bottom: 8px;
+        }
+
         .about-text {
             font-size: 1.15em;
             line-height: 1.9;
             color: #cbd5e1;
-            max-width: 750px;
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto 20px auto;
             padding: 30px;
             background: rgba(20, 20, 20, 0.5);
             border-radius: 4px;
             border: 1px solid rgba(79, 192, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .skill {
+            font-family: 'Space Mono', monospace;
+            background: rgba(79, 192, 255, 0.1);
+            color: #4fc0ff;
+            padding: 8px 16px;
+            border-radius: 3px;
+            border: 1px solid rgba(79, 192, 255, 0.3);
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .skill:hover {
+            background: rgba(79, 192, 255, 0.2);
+            border-color: #4fc0ff;
+            transform: translateY(-2px);
         }
 
         .project-grid {
@@ -345,52 +394,101 @@
             font-size: 0.9em;
             color: #94a3b8;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .project-buttons {
+        .project-links {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .project-btn {
+        .project-links a {
             font-family: 'Space Mono', monospace;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            color: #4fc0ff;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-            justify-content: center;
-        }
-
-        .demo-btn {
-            background: transparent;
+            font-size: 0.85em;
+            padding: 6px 12px;
             border: 1px solid #4fc0ff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            background: rgba(79, 192, 255, 0.1);
+            color: #fafafa;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #18181b;
+            border-radius: 20px;
+            padding: 40px 30px 30px 30px;
+            max-width: 500px;
+            width: 90vw;
+            box-shadow: 0 8px 40px rgba(79,192,255,0.2);
+            position: relative;
+            color: #e4e4e7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 2em;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .modal-close:hover {
             color: #4fc0ff;
         }
-
-        .demo-btn:hover {
-            background: #4fc0ff;
-            color: #000;
-            transform: translateY(-2px);
-        }
-
-        .github-btn {
-            background: transparent;
-            border: 1px solid #64748b;
-            color: #94a3b8;
-        }
-
-        .github-btn:hover {
-            border-color: #4fc0ff;
+        .modal-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 15px;
             color: #4fc0ff;
-            transform: translateY(-2px);
+            text-align: left;
+        }
+        .modal-description {
+            font-size: 1em;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .modal-media-placeholder {
+            width: 100%;
+            height: 180px;
+            background: #23232a;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-family: 'Space Mono', monospace;
+            font-size: 1em;
         }
 
         footer {
@@ -512,30 +610,36 @@
     <nav>
         <div class="nav-container">
             <a href="#about">about</a>
-            <a href="#education">education</a>
             <a href="#experience">experience</a>
             <a href="#leadership">leadership</a>
+            <a href="#education">education</a>
             <a href="#projects">projects</a>
+            <a href="#skills">skills</a>
         </div>
     </nav>
 
     <div class="container">
         <header>
-            <img src="https://via.placeholder.com/180" alt="Profile Picture" class="profile-picture">
+            <img src="Robert_Albani.JPG" alt="Robert Albani" class="profile-picture">
             <div class="header-content">
-                <h1>Your Name</h1>
-                <p class="tagline">full-stack developer & problem solver</p>
+                <h1>Robert Albani</h1>
+                <p class="tagline">MIT '26 | AI and Decision Making</p>
             </div>
         </header>
 
         <main>
             <section id="about">
                 <h2>about</h2>
-                <p class="about-text">
-                    Write a compelling introduction about yourself here. Share your passion for technology, 
-                    your journey into programming, and what drives you to build innovative solutions. 
-                    This is your space to connect with visitors and showcase your unique perspective as a developer.
-                </p>
+                <div class="about-text">
+                    <p style="margin-bottom: 15px;">
+                        Hello! I'm Robert, a Senior at MIT. I like long walks on the beach, thinking about owning a dog someday, and 
+                        trying to code good.
+                    </p>
+                    <p>
+                        When I'm not coding, I play for the varsity squash team, play alto saxophone for a small jazz combo, and 
+                        enjoy leading Japanese language tours around campus!
+                    </p>
+                </div>
             </section>
 
             <section id="education">
@@ -544,18 +648,48 @@
                     <div class="item-summary" onclick="toggleItem(this)">
                         <div class="item-main-info">
                             <div class="item-header">
-                                <span class="item-title">University Name</span>
-                                <span class="item-date">2020 - 2024</span>
+                                <span class="item-title">Bachelor of Science in AI and Decision Making</span>
+                                <span class="item-date">2022 - 2026</span>
                             </div>
-                            <div class="item-subtitle">Bachelor of Science in Computer Science</div>
+                            <div class="item-subtitle">Massachusetts Institute of Technology</div>
                         </div>
                         <span class="expand-icon">▼</span>
                     </div>
                     <div class="item-details">
                         <div class="item-description">
-                            GPA: 3.8/4.0 • Relevant coursework: Data Structures, Algorithms, Web Development, Machine Learning
+                            <!-- <p>
+                                Focused on software engineering, algorithms, and data structures. 
+                                Graduated with honors and completed capstone project on machine learning applications.
+                            </p> -->
+                            <ul>
+                                <li>GPA: 4.7/5.0</li>
+                                <li>Relevant Coursework: Data Structures, Algorithms, Database Systems, Web Development</li>
+                                <li>Minors: Mechanical Engineering, Music</li>
+                            </ul>
                         </div>
                     </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Masters of Engineering in AI and Decision Making</span>
+                                <span class="item-date">2026 - 2027</span>
+                            </div>
+                            <div class="item-subtitle">Massachusetts Institute of Technology</div>
+                        </div>
+                        <!-- <span class="expand-icon">▼</span> -->
+                    </div>
+                    <!-- <div class="item-details">
+                        <div class="item-description">
+                            <ul>
+                                <li>GPA: 4.7/5.0</li>
+                                <li>Relevant Coursework: Data Structures, Algorithms, Database Systems, Web Development</li>
+                                <li>Minors: Mechanical Engineering, Music</li>
+                            </ul>
+                        </div>
+                    </div> -->
                 </div>
             </section>
 
@@ -565,18 +699,25 @@
                     <div class="item-summary" onclick="toggleItem(this)">
                         <div class="item-main-info">
                             <div class="item-header">
-                                <span class="item-title">Software Engineer</span>
-                                <span class="item-date">Jan 2024 - Present</span>
+                                <span class="item-title">Undergraduate Researcher</span>
+                                <span class="item-date">June 2025 - Present</span>
                             </div>
-                            <div class="item-subtitle">Company Name</div>
+                            <div class="item-subtitle">MIT Sports Lab<span class="item-location">Cambridge, MA</span></div>
                         </div>
                         <span class="expand-icon">▼</span>
                     </div>
                     <div class="item-details">
                         <div class="item-description">
-                            Developed scalable backend services using Node.js and Python. Optimized database queries 
-                            resulting in 40% performance improvement. Collaborated with cross-functional teams to ship 
-                            features impacting 100K+ users.
+                            <p>
+                                Developed advanced optimization algorithms to improve scheduling for MIT's Division III sports teams.
+                                Worked on a separate project to create an online Sports Engineering class for MIT students online. Created 
+                                and tested interactive coding assignments and projects to teach students about sports analytics and machine learning principles.
+                            </p>
+                            <ul>
+                                <li>Built two complementary scheduling optimization models — a statistical framework and a Markov Decision Process based solution — to enhance competitive outcomes for MIT's Division III sports teams</li>
+                                <li>Designed and implemented automated optimization methods that strategically maximize national ranking potential, providing coaches with a data-driven scheduling advantage</li>
+                                <li>Tested and designed project for new online Sports Engineering class to help students learn about machine learning fundamentals</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -585,17 +726,149 @@
                     <div class="item-summary" onclick="toggleItem(this)">
                         <div class="item-main-info">
                             <div class="item-header">
-                                <span class="item-title">Software Engineering Intern</span>
-                                <span class="item-date">Jun 2023 - Aug 2023</span>
+                                <span class="item-title">Machine Learning Engineer Intern</span>
+                                <span class="item-date">June 2025 - Aug 2025</span>
                             </div>
-                            <div class="item-subtitle">Another Company</div>
+                            <div class="item-subtitle">WonderBotz<span class="item-location">Princeton, NJ</span></div>
                         </div>
                         <span class="expand-icon">▼</span>
                     </div>
                     <div class="item-details">
                         <div class="item-description">
-                            Built responsive web applications using React and TypeScript. Implemented CI/CD pipelines 
-                            and wrote comprehensive unit tests, achieving 90% code coverage.
+                            <p>
+                                Assisted in building responsive web applications and implementing new features. 
+                                Participated in code reviews and contributed to improving development processes.
+                            </p>
+                            <ul>
+                                <li>Researched, evaluated, and benchmarked open-source machine learning models to identify scalable replacements for existing automation systems</li>
+                                <li>Designed and implemented a document processing solution through Azure that enhanced internal business automation workflows and reduced reliance on legacy tools</li>
+                                <li>Improved document data extraction accuracy by 15% through fine-tuning open-source visual language models on company datasets</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Undergraduate Researcher</span>
+                                <span class="item-date">Feb 2024 - Jun 2025</span>
+                            </div>
+                            <div class="item-subtitle">MIT Immersive Japanese Language Acquisition Experience <span class="item-location">Cambridge, MA</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <!-- <p>
+                                Worked on a new project to build an AI health companion that can answer user questions about health and wellness.
+                            </p> -->
+                            <ul>
+                                <li>Worked with 3 lab partners to create a virtual environment allowing users to converse with AI avatars in Unity</li>
+                                <li>Led work to create custom avatars using user images through C# programs</li>
+                                <li>Developed automated avatar creating scripts using C# in Unity and Blender</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Software Engineer Intern</span>
+                                <span class="item-date">June 2024 - Aug 2024</span>
+                            </div>
+                            <div class="item-subtitle">Bokksu<span class="item-location">Tokyo, JP</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <p>
+                                Assisted in building responsive web applications and implementing new features. 
+                                Helped with new SEO initiatives to increase web traffic
+                            </p>
+                            <ul>
+                                <li>Enhanced website visibility by analyzing 100,000+ product data points and implementing optimized keywords, driving stronger search engine rankings</li>
+                                <li>Streamlined e-commerce operations by developing dynamic Shopify content blocks with HTML/CSS, enabling faster designer updates for seasonal campaigns</li>
+                                <li>Pioneered the integration of generative AI for marketing, producing new image and video assets that reduced reliance on external creative resources</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">AI Engineer Intern</span>
+                                <span class="item-date">June 2024 - Aug 2024</span>
+                            </div>
+                            <div class="item-subtitle">HaiMirai<span class="item-location">Tokyo, JP</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <p>
+                                Worked on a new project to build an AI health companion that can answer user questions about health and wellness.
+                            </p>
+                            <ul>
+                                <li>Finetuned a custom intent classifier from Hugging Face using PyTorch to accurately categorize 7 types of health-related user queries, improving the AI companion's response precision</li>
+                                <li>Architected a multi-agent backend system for a demo health application, enabling scalable interactions and supporting pitches to venture capital investors</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Undergraduate Researcher</span>
+                                <span class="item-date">Jun 2023 - Jun 2024</span>
+                            </div>
+                            <div class="item-subtitle">MIT Research Laboratory of Electronics: Speech Errors Analytics Project <span class="item-location">Cambridge, MA</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <!-- <p>
+                                Worked on a new project to build an AI health companion that can answer user questions about health and wellness.
+                            </p> -->
+                            <ul>
+                                <li>Collected audio recording data from 5 participants using forced aligner algorithms through python and audio analysis application Praat</li>
+                                <li>Created automated excel sheet that web scraped online databases for more than 1,000 data points</li>
+                                <li>Spearheaded research into detecting speech errors using utterance duration using python</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Undergraduate Researcher</span>
+                                <span class="item-date">Sep 2023 - Jan 2024</span>
+                            </div>
+                            <div class="item-subtitle">MIT D-Lab Medical Diagnostic Smart Mirror Project<span class="item-location">Cambridge, MA</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <!-- <p>
+                                Worked on a new project to build an AI health companion that can answer user questions about health and wellness.
+                            </p> -->
+                            <ul>
+                                <li>Worked on a team of 2 to design and build a smart mirror from scratch using a raspberry pi</li>
+                                <li>Developed camera to remotely calculate heart rate of a user with libraries OpenCV and MediaPipe</li>
+                                <li>Presented research on NHK, the Japan Broadcasting Corporation </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -607,17 +880,24 @@
                     <div class="item-summary" onclick="toggleItem(this)">
                         <div class="item-main-info">
                             <div class="item-header">
-                                <span class="item-title">President</span>
-                                <span class="item-date">2023 - 2024</span>
+                                <span class="item-title">Co-President</span>
+                                <span class="item-date">Sep 2024 - Present</span>
                             </div>
-                            <div class="item-subtitle">Computer Science Student Association</div>
+                            <div class="item-subtitle">MIT Japanese Society of Undergraduates</div>
                         </div>
                         <span class="expand-icon">▼</span>
                     </div>
                     <div class="item-details">
                         <div class="item-description">
-                            Led a team of 15 students in organizing hackathons and tech talks. Increased club membership 
-                            by 60% and established partnerships with local tech companies for mentorship programs.
+                            <p>
+                                Leading a team of 15 members to organize cultural events, language exchange programs, and 
+                                community outreach initiatives to promote Japanese culture on campus.
+                            </p>
+                            <ul>
+                                <li>Organize bi-weekly club meetings, club events, and Japanese language learning dinner tables</li>
+                                <li>Mentor younger members from each position in doing their duties</li>
+                                <li>Help organize MIT campus tours for Japanese high school tour groups</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -626,17 +906,22 @@
                     <div class="item-summary" onclick="toggleItem(this)">
                         <div class="item-main-info">
                             <div class="item-header">
-                                <span class="item-title">Team Lead</span>
-                                <span class="item-date">2022 - 2023</span>
+                                <span class="item-title">Rush Chair</span>
+                                <span class="item-date">Feb 2024 - Dec 2024</span>
                             </div>
-                            <div class="item-subtitle">Open Source Initiative</div>
+                            <div class="item-subtitle">Pi Lambda Phi Fraternity</div>
                         </div>
                         <span class="expand-icon">▼</span>
                     </div>
                     <div class="item-details">
                         <div class="item-description">
-                            Coordinated a team of developers contributing to open-source projects. Merged 50+ pull requests 
-                            and mentored junior developers in best practices.
+                            <p>
+                                Organized and led recruitment efforts for the fraternity, resulting in a 15% increase in new members.
+                            </p>
+                            <ul>
+                                <li>Organized events for over 300 potential new members and organized funds between transportation and projects to maintain a budget of $20,000</li>
+                                <li>Led the creation of new policies for voting to optimize time and facilitated discussion within the fraternity of 40 people</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -646,52 +931,51 @@
                 <h2>projects</h2>
                 <div class="project-grid">
                     <div class="project-card">
-                        <div class="project-title">Project Alpha</div>
+                        <div class="project-title">Project One</div>
                         <div class="project-description">
-                            A real-time chat application built with WebSocket, React, and Node.js. 
-                            Supports user authentication, message encryption, and group conversations.
+                            A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.
                         </div>
-                        <div class="project-buttons">
-                            <button class="project-btn demo-btn" onclick="openModal('Project Alpha', 'A real-time chat application built with WebSocket, React, and Node.js. Supports user authentication, message encryption, and group conversations. Features include real-time notifications, file sharing, and typing indicators.', '')">
-                                Demo
-                            </button>
-                            <a href="https://github.com/yourusername/project-alpha" target="_blank" class="project-btn github-btn">
-                                GitHub
-                            </a>
+                        <div class="project-links">
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Project One', 'A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.', 'Website.mov')">Demo</a>
+                            <a href="#" class="project-btn github-btn">GitHub</a>
                         </div>
                     </div>
-
                     <div class="project-card">
-                        <div class="project-title">Project Beta</div>
+                        <div class="project-title">Project Two</div>
                         <div class="project-description">
-                            Machine learning model for sentiment analysis using Python and TensorFlow. 
-                            Achieved 92% accuracy on test dataset with custom NLP preprocessing pipeline.
+                            An open-source tool that helps developers streamline their workflow and increase productivity.
                         </div>
-                        <div class="project-buttons">
-                            <button class="project-btn demo-btn" onclick="openModal('Project Beta', 'Machine learning model for sentiment analysis using Python and TensorFlow. Achieved 92% accuracy on test dataset with custom NLP preprocessing pipeline. Trained on 100K+ samples with advanced feature engineering.', '')">
-                                Demo
-                            </button>
-                            <a href="https://github.com/yourusername/project-beta" target="_blank" class="project-btn github-btn">
-                                GitHub
-                            </a>
+                        <div class="project-links">
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Project Two', 'An open-source tool that helps developers streamline their workflow and increase productivity.', 'https://via.placeholder.com/400x180.png')">Demo</a>
+                            <a href="#" class="project-btn github-btn">GitHub</a>
                         </div>
                     </div>
-
                     <div class="project-card">
-                        <div class="project-title">Project Gamma</div>
+                        <div class="project-title">Project Three</div>
                         <div class="project-description">
-                            CLI tool for automating deployment workflows. Built with Go, featuring 
-                            parallel execution, error handling, and comprehensive logging.
+                            A creative project that combines design and functionality to deliver an exceptional user experience.
                         </div>
-                        <div class="project-buttons">
-                            <button class="project-btn demo-btn" onclick="openModal('Project Gamma', 'CLI tool for automating deployment workflows. Built with Go, featuring parallel execution, error handling, and comprehensive logging. Reduces deployment time by 70% with intelligent caching and rollback capabilities.', '')">
-                                Demo
-                            </button>
-                            <a href="https://github.com/yourusername/project-gamma" target="_blank" class="project-btn github-btn">
-                                GitHub
-                            </a>
+                        <div class="project-links">
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Project Three', 'A creative project that combines design and functionality to deliver an exceptional user experience.', 'https://via.placeholder.com/400x180.png')">Demo</a>
+                            <a href="#" class="project-btn github-btn">GitHub</a>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>skills</h2>
+                <div class="skills">
+                    <div class="skill">JavaScript</div>
+                    <div class="skill">Python</div>
+                    <div class="skill">React</div>
+                    <div class="skill">Node.js</div>
+                    <div class="skill">Git</div>
+                    <div class="skill">SQL</div>
+                    <div class="skill">HTML/CSS</div>
+                    <div class="skill">MongoDB</div>
+                    <div class="skill">Docker</div>
+                    <div class="skill">AWS</div>
                 </div>
             </section>
         </main>
@@ -699,12 +983,11 @@
 
     <footer>
         <div class="contact-links">
-            <a href="mailto:your.email@example.com">email</a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin</a>
-            <a href="https://github.com/yourusername" target="_blank">github</a>
-            <a href="https://twitter.com/yourhandle" target="_blank">twitter</a>
+            <a href="mailto:bobbyalbani0524@gmail.com">email</a>
+            <a href="https://linkedin.com/in/robert-albani" target="_blank">linkedin</a>
+            <a href="https://github.com/bhirokia" target="_blank">github</a>
         </div>
-        <p class="copyright">2024 Your Name</p>
+        <p class="copyright">2025 Robert Albani</p>
     </footer>
 
     <!-- Modal for project details -->
@@ -735,55 +1018,6 @@
                 item.classList.add('active');
             }
         }
-
-        function openModal(title, description, mediaUrl) {
-            const modal = document.getElementById('projectModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalDescription = document.getElementById('modalDescription');
-            const modalMedia = document.getElementById('modalMedia');
-            
-            modalTitle.textContent = title;
-            modalDescription.textContent = description;
-            
-            // Handle media
-            if (mediaUrl) {
-                const isVideo = mediaUrl.match(/\.(mp4|webm|ogg)$/i);
-                const isImage = mediaUrl.match(/\.(jpg|jpeg|png|gif|webp)$/i);
-                
-                if (isVideo) {
-                    modalMedia.innerHTML = `<video controls src="${mediaUrl}"></video>`;
-                } else if (isImage) {
-                    modalMedia.innerHTML = `<img src="${mediaUrl}" alt="${title}">`;
-                } else {
-                    modalMedia.innerHTML = '<div class="modal-media-placeholder">// media preview</div>';
-                }
-            } else {
-                modalMedia.innerHTML = '<div class="modal-media-placeholder">// media preview</div>';
-            }
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('projectModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('projectModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('nav a').forEach(link => {
@@ -818,6 +1052,46 @@
                     document.querySelector(`nav a[href="#${section.id}"]`)?.classList.add('active');
                 }
             });
+        });
+
+        function openModal(title, description, mediaUrl) {
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalMedia = document.getElementById('modalMedia');
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+            // Handle media
+            if (mediaUrl) {
+                const isVideo = mediaUrl.match(/\.(mp4|webm|ogg|mov)$/i);
+                const isImage = mediaUrl.match(/\.(jpg|jpeg|png|gif|webp|png)$/i);
+                if (isVideo) {
+                    modalMedia.innerHTML = `<video controls src="${mediaUrl}" style="max-width:100%;max-height:180px;"></video>`;
+                } else if (isImage) {
+                    modalMedia.innerHTML = `<img src="${mediaUrl}" alt="${title}" style="max-width:100%;max-height:180px;border-radius:6px;">`;
+                } else {
+                    modalMedia.innerHTML = '<div class="modal-media-placeholder">// media preview</div>';
+                }
+            } else {
+                modalMedia.innerHTML = '<div class="modal-media-placeholder">// media preview</div>';
+            }
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>

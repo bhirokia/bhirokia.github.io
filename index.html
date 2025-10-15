@@ -463,6 +463,78 @@
             content: '// ';
         }
 
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #18181b;
+            border-radius: 20px;
+            padding: 40px 30px 30px 30px;
+            max-width: 500px;
+            width: 90vw;
+            box-shadow: 0 8px 40px rgba(79,192,255,0.2);
+            position: relative;
+            color: #e4e4e7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 2em;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .modal-close:hover {
+            color: #4fc0ff;
+        }
+        .modal-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #4fc0ff;
+            text-align: left;
+        }
+        .modal-description {
+            font-size: 1em;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .modal-media-placeholder {
+            width: 100%;
+            height: 180px;
+            background: #23232a;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-family: 'Space Mono', monospace;
+            font-size: 1em;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -864,7 +936,7 @@
                             A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.
                         </div>
                         <div class="project-links">
-                            <a href="#">Demo</a>
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Project One', 'A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.', 'Website.mov')">Demo</a>
                             <a href="#">GitHub</a>
                         </div>
                     </div>
@@ -909,6 +981,19 @@
                 </div>
             </section>
         </main>
+    </div>
+
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-media" id="modalMedia">
+                <div class="modal-media-placeholder">// media preview</div>
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title" id="modalTitle">Project Title</h3>
+                <p class="modal-description" id="modalDescription">Project description goes here.</p>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -968,6 +1053,46 @@
                     document.querySelector(`nav a[href="#${section.id}"]`)?.classList.add('active');
                 }
             });
+        });
+
+        function openModal(title, description, mediaUrl) {
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalMedia = document.getElementById('modalMedia');
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+            // Handle media
+            if (mediaUrl) {
+                const isVideo = mediaUrl.match(/\.(mp4|webm|mov|ogg)$/i);
+                const isImage = mediaUrl.match(/\.(jpg|jpeg|png|gif|webp|png)$/i);
+                if (isVideo) {
+                    modalMedia.innerHTML = `<video controls src="${mediaUrl}" style="max-width:100%;max-height:180px;"></video>`;
+                } else if (isImage) {
+                    modalMedia.innerHTML = `<img src="${mediaUrl}" alt="${title}" style="max-width:100%;max-height:180px;border-radius:6px;">`;
+                } else {
+                    modalMedia.innerHTML = '<div class="modal-media-placeholder">// media preview</div>';
+                }
+            } else {
+                modalMedia.innerHTML = '<div class="modal-media-placeholder">// media preview</div>';
+            }
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>
