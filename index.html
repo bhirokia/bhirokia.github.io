@@ -390,6 +390,16 @@
             font-weight: 700;
         }
 
+        .project-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85em;
+            color: #64748b;
+            background: rgba(100, 116, 139, 0.2);
+            padding: 4px 12px;
+            border-radius: 3px;
+            margin-left: 10px;
+        }
+
         .project-description {
             font-size: 0.9em;
             color: #94a3b8;
@@ -931,9 +941,13 @@
                 <h2>projects</h2>
                 <div class="project-grid">
                     <div class="project-card">
-                        <div class="project-title">Project One</div>
+                        <div class="project-title">Omoide Blog</div>
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+                            <div class="project-title">Omoide Blog</div>
+                            <div class="project-date">2023</div>
+                        </div>
                         <div class="project-description">
-                            A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.
+                            Created in 2023, this four-page React blog platform allows users to share personal experiences involving war and other life tragedies. It was initially created as a demo to share my grandmother's story during World War II in Japan. It includes sections for browsing posts, reading historical context, viewing individual stories, and submitting new entries.
                         </div>
                         <div class="project-links">
                             <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Project One', 'A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.', 'Website.mov')">Demo</a>
@@ -943,6 +957,10 @@
 
                     <div class="project-card">
                         <div class="project-title">Project Two</div>
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+                            <div class="project-title">Project One</div>
+                            <div class="project-date">Jan 2024 - May 2024</div>
+                        </div>
                         <div class="project-description">
                             An open-source tool that helps developers streamline their workflow and increase productivity.
                         </div>
@@ -954,6 +972,10 @@
 
                     <div class="project-card">
                         <div class="project-title">Project Three</div>
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+                            <div class="project-title">Project One</div>
+                            <div class="project-date">Jan 2024 - May 2024</div>
+                        </div>
                         <div class="project-description">
                             A creative project that combines design and functionality to deliver an exceptional user experience.
                         </div>

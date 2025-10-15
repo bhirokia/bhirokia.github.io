@@ -390,6 +390,16 @@
             font-weight: 700;
         }
 
+        .project-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85em;
+            color: #64748b;
+            background: rgba(100, 116, 139, 0.2);
+            padding: 4px 12px;
+            border-radius: 3px;
+            margin-left: 10px;
+        }
+
         .project-description {
             font-size: 0.9em;
             color: #94a3b8;
@@ -931,7 +941,10 @@
                 <h2>projects</h2>
                 <div class="project-grid">
                     <div class="project-card">
-                        <div class="project-title">Project One</div>
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+        <div class="project-title">Project One</div>
+        <div class="project-date">Jan 2024 - May 2024</div>
+    </div>
                         <div class="project-description">
                             A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.
                         </div>
@@ -941,7 +954,10 @@
                         </div>
                     </div>
                     <div class="project-card">
-                        <div class="project-title">Project Two</div>
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+        <div class="project-title">Project Two</div>
+        <div class="project-date">Sep 2023 - Dec 2023</div>
+    </div>
                         <div class="project-description">
                             An open-source tool that helps developers streamline their workflow and increase productivity.
                         </div>
@@ -951,7 +967,10 @@
                         </div>
                     </div>
                     <div class="project-card">
-                        <div class="project-title">Project Three</div>
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+        <div class="project-title">Project Three</div>
+        <div class="project-date">Jun 2022 - Aug 2022</div>
+    </div>
                         <div class="project-description">
                             A creative project that combines design and functionality to deliver an exceptional user experience.
                         </div>
