@@ -494,8 +494,8 @@
             background: #18181b;
             border-radius: 20px;
             padding: 40px 30px 30px 30px;
-            max-width: 500px;
-            width: 90vw;
+            max-width: 900px;
+            width: 80vw;
             box-shadow: 0 8px 40px rgba(79,192,255,0.2);
             position: relative;
             color: #e4e4e7;
@@ -533,7 +533,7 @@
         }
         .modal-media-placeholder {
             width: 100%;
-            height: 180px;
+            height: 400px;
             background: #23232a;
             color: #64748b;
             display: flex;
@@ -1015,16 +1015,21 @@
             <section id="skills">
                 <h2>skills</h2>
                 <div class="skills">
-                    <div class="skill">JavaScript</div>
                     <div class="skill">Python</div>
-                    <div class="skill">React</div>
-                    <div class="skill">Node.js</div>
-                    <div class="skill">Git</div>
                     <div class="skill">SQL</div>
+                    <div class="skill">MATLAB</div>
+                    <div class="skill">R</div>
+                    <div class="skill">Java</div>
+                    <div class="skill">JavaScript</div>
                     <div class="skill">HTML/CSS</div>
-                    <div class="skill">MongoDB</div>
-                    <div class="skill">Docker</div>
-                    <div class="skill">AWS</div>
+                    <div class="skill">C#</div>
+                    <div class="skill">C++</div>
+                    <div class="skill">PyTorch</div>
+                    <div class="skill">TensorFlow</div>
+                    <div class="skill">Pandas</div>
+                    <div class="skill">React</div>
+                    <div class="skill">Microsoft Azure</div>
+                    <div class="skill">Unity</div>
                 </div>
             </section>
         </main>
@@ -1114,9 +1119,9 @@
                 const isVideo = mediaUrl.match(/\.(mp4|webm|mov|ogg)$/i);
                 const isImage = mediaUrl.match(/\.(jpg|jpeg|png|gif|webp|png)$/i);
                 if (isVideo) {
-                    modalMedia.innerHTML = `<video controls src="${mediaUrl}" style="max-width:100%;max-height:180px;"></video>`;
+                    modalMedia.innerHTML = `<video controls src="${mediaUrl}" style="max-width:100%;max-height:400px;"></video>`;
                 } else if (isImage) {
-                    modalMedia.innerHTML = `<img src="${mediaUrl}" alt="${title}" style="max-width:100%;max-height:180px;border-radius:6px;">`;
+                    modalMedia.innerHTML = `<img src="${mediaUrl}" alt="${title}" style="max-width:100%;max-height:400px;border-radius:6px;">`;
                 } else {
                     modalMedia.innerHTML = '<div class="modal-media-placeholder">// media preview</div>';
                 }
