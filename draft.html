@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robert Albani - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            color: #e4e4e7;
+            line-height: 1.7;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(79, 192, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(79, 192, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1a1a1a;
+            z-index: 100;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav-container a {
+            font-family: 'Space Mono', monospace;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-container a::before {
+            content: '// ';
+            color: #64748b;
+        }
+
+        .nav-container a:hover {
+            color: #4fc0ff;
+        }
+
+        .nav-container a.active {
+            color: #4fc0ff;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 140px 40px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 100px;
+            animation: fadeIn 1s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .profile-picture {
+            width: 180px;
+            height: 180px;
+            border-radius: 8px;
+            border: 3px solid #4fc0ff;
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(79, 192, 255, 0.3);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .profile-picture:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(79, 192, 255, 0.5);
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        h1 {
+            font-family: 'Space Mono', monospace;
+            font-size: 4em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fafafa;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::before {
+            content: '> ';
+            color: #4fc0ff;
+            animation: blink 1.5s infinite;
+        }
+
+        .tagline {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1em;
+            color: #94a3b8;
+            margin-left: 30px;
+        }
+
+        .tagline::before {
+            content: '// ';
+            color: #64748b;
+        }
+
+        section {
+            margin-bottom: 120px;
+            opacity: 0;
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        section:nth-child(1) { animation-delay: 0.2s; }
+        section:nth-child(2) { animation-delay: 0.3s; }
+        section:nth-child(3) { animation-delay: 0.4s; }
+        section:nth-child(4) { animation-delay: 0.5s; }
+        section:nth-child(5) { animation-delay: 0.6s; }
+        section:nth-child(6) { animation-delay: 0.7s; }
+
+        h2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: #4fc0ff;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::before {
+            content: '// ';
+            color: #64748b;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #4fc0ff, transparent);
+        }
+
+        .item {
+            margin-bottom: 20px;
+            background: rgba(20, 20, 20, 0.5);
+            border-left: 3px solid #1a1a1a;
+            border: 1px solid #4fc0ff;
+            border-left: 3px solid #4fc0ff;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .item-summary {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .item-summary:hover {
+            background: rgba(30, 30, 30, 0.6);
+        }
+
+        .item.active {
+            border-left-color: #4fc0ff;
+            box-shadow: 0 0 20px rgba(79, 192, 255, 0.2);
+        }
+
+        .item-main-info {
+            flex: 1;
+        }
+
+        .expand-icon {
+            color: #64748b;
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .item.active .expand-icon {
+            transform: rotate(180deg);
+            color: #4fc0ff;
+        }
+
+        .item-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 25px;
+        }
+
+        .item.active .item-details {
+            max-height: 500px;
+            padding: 0 25px 25px 25px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .item-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #fafafa;
+        }
+
+        .item-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85em;
+            color: #64748b;
+            background: rgba(100, 116, 139, 0.2);
+            padding: 4px 12px;
+            border-radius: 3px;
+        }
+
+        .item-subtitle {
+            color: #cbd5e1;
+            margin-bottom: 0;
+            font-size: 1.05em;
+            font-weight: 300;
+        }
+
+        .item-location {
+            color: #94a3b8;
+            font-size: 0.85em;
+            margin-left: 8px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .item-location::before {
+            content: '• ';
+            color: #64748b;
+        }
+
+        .item-description {
+            color: #94a3b8;
+            font-size: 0.95em;
+            line-height: 1.7;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .item-description ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .item-description li {
+            margin-bottom: 8px;
+        }
+
+        .about-text {
+            font-size: 1.15em;
+            line-height: 1.9;
+            color: #cbd5e1;
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto 20px auto;
+            padding: 30px;
+            background: rgba(20, 20, 20, 0.5);
+            border-radius: 4px;
+            border: 1px solid rgba(79, 192, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .skill {
+            font-family: 'Space Mono', monospace;
+            background: rgba(79, 192, 255, 0.1);
+            color: #4fc0ff;
+            padding: 8px 16px;
+            border-radius: 3px;
+            border: 1px solid rgba(79, 192, 255, 0.3);
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .skill:hover {
+            background: rgba(79, 192, 255, 0.2);
+            border-color: #4fc0ff;
+            transform: translateY(-2px);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: rgba(20, 20, 20, 0.5);
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #1a1a1a;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            /* ensure cards have some minimum height so buttons can sit at the bottom */
+            min-height: 220px;
+        }
+
+        /* make description grow to fill available space so links stay at bottom */
+        .project-description {
+            font-size: 0.9em;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            flex: 1 1 auto;
+        }
+
+        /* push links to bottom */
+        .project-links {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #4fc0ff, #1e90ff);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: #4fc0ff;
+            background: rgba(30, 30, 30, 0.6);
+            box-shadow: 0 10px 40px rgba(79, 192, 255, 0.2);
+        }
+
+        .project-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            color: #fafafa;
+            font-weight: 700;
+        }
+
+        .project-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85em;
+            color: #64748b;
+            background: rgba(100, 116, 139, 0.2);
+            padding: 4px 12px;
+            border-radius: 3px;
+            margin-left: 10px;
+        }
+
+        .project-description {
+            font-size: 0.9em;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            flex: 1 1 auto;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #18181b;
+            border-radius: 20px;
+            padding: 40px 30px 30px 30px;
+            max-width: 900px;
+            width: 80vw;
+            box-shadow: 0 8px 40px rgba(79,192,255,0.2);
+            position: relative;
+            color: #e4e4e7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 2em;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .modal-close:hover {
+            color: #4fc0ff;
+        }
+        .modal-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #4fc0ff;
+            text-align: left;
+        }
+        .modal-description {
+            font-size: 1em;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .modal-media-placeholder {
+            width: 100%;
+            height: 400px;
+            background: #23232a;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-family: 'Space Mono', monospace;
+            font-size: 1em;
+        }
+
+        /* hide media container when it has no content so modal shows only title + description */
+        .modal-media:empty {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 40px 40px;
+            border-top: 1px solid #1a1a1a;
+            margin-top: 80px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            font-family: 'Space Mono', monospace;
+            color: #4fc0ff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+        }
+
+        .contact-links a:hover {
+            color: #fafafa;
+            border-color: #4fc0ff;
+            background: rgba(79, 192, 255, 0.1);
+        }
+
+        .copyright {
+            font-family: 'Space Mono', monospace;
+            color: #64748b;
+            font-size: 0.85em;
+            margin-top: 25px;
+        }
+
+        .copyright::before {
+            content: '// ';
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .nav-container {
+                gap: 20px;
+                padding: 0 25px;
+            }
+
+            .nav-container a {
+                font-size: 0.8em;
+            }
+
+            .container {
+                padding: 120px 25px 60px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+
+            .profile-picture {
+                width: 140px;
+                height: 140px;
+            }
+
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                gap: 20px;
+            }
+        }
+
+        .project-links a {
+            font-family: 'Space Mono', monospace;
+            color: #4fc0ff;
+            text-decoration: none;
+            font-size: 0.85em;
+            padding: 6px 12px;
+            border: 1px solid #4fc0ff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Restore button classes so <a class="project-btn github-btn"> looks like the original buttons */
+        .project-btn, .github-btn {
+            font-family: 'Space Mono', monospace;
+            color: #4fc0ff;
+            text-decoration: none;
+            font-size: 0.85em;
+            padding: 6px 12px;
+            border: 1px solid #4fc0ff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            background: transparent;
+            display: inline-block;
+        }
+        .project-btn:hover, .github-btn:hover, .project-links a:hover {
+            background: rgba(79, 192, 255, 0.1);
+            color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#about">about</a>
+            <a href="#experience">experience</a>
+            <a href="#leadership">leadership</a>
+            <a href="#education">education</a>
+            <a href="#projects">projects</a>
+            <a href="#skills">skills</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <img src="Robert_Albani.JPG" alt="Robert Albani" class="profile-picture">
+            <div class="header-content">
+                <h1>Robert Albani</h1>
+                <p class="tagline">MIT '26 | AI and Decision Making</p>
+            </div>
+        </header>
+
+        <main>
+            <section id="about">
+                <h2>about</h2>
+                <div class="about-text">
+                    <p style="margin-bottom: 15px;">
+                        Hello! I'm Robert, a Senior at MIT. I like long walks on the beach, thinking about owning a dog someday, and 
+                        trying to code good.
+                    </p>
+                    <p>
+                        When I'm not coding, I play for the varsity squash team, play alto saxophone for a small jazz combo, and 
+                        enjoy leading Japanese language tours around campus!
+                    </p>
+                </div>
+            </section>
+
+            <section id="education">
+                <h2>education</h2>
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Bachelor of Science in AI and Decision Making</span>
+                                <span class="item-date">2022 - 2026</span>
+                            </div>
+                            <div class="item-subtitle">Massachusetts Institute of Technology</div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <!-- <p>
+                                Focused on software engineering, algorithms, and data structures. 
+                                Graduated with honors and completed capstone project on machine learning applications.
+                            </p> -->
+                            <ul>
+                                <li>GPA: 4.7/5.0</li>
+                                <li>Relevant Coursework: Data Structures, Algorithms, Database Systems, Web Development</li>
+                                <li>Minors: Mechanical Engineering, Music</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Masters of Engineering in AI and Decision Making</span>
+                                <span class="item-date">2026 - 2027</span>
+                            </div>
+                            <div class="item-subtitle">Massachusetts Institute of Technology</div>
+                        </div>
+                        <!-- <span class="expand-icon">▼</span> -->
+                    </div>
+                    <!-- <div class="item-details">
+                        <div class="item-description">
+                            <ul>
+                                <li>GPA: 4.7/5.0</li>
+                                <li>Relevant Coursework: Data Structures, Algorithms, Database Systems, Web Development</li>
+                                <li>Minors: Mechanical Engineering, Music</li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>work.experience</h2>
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Undergraduate Researcher</span>
+                                <span class="item-date">June 2025 - Present</span>
+                            </div>
+                            <div class="item-subtitle">MIT Sports Lab<span class="item-location">Cambridge, MA</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <p>
+                                Developed advanced optimization algorithms to improve scheduling for MIT's Division III sports teams.
+                                Worked on a separate project to create an online Sports Engineering class for MIT students online. Created 
+                                and tested interactive coding assignments and projects to teach students about sports analytics and machine learning principles.
+                            </p>
+                            <ul>
+                                <li>Built two complementary scheduling optimization models — a statistical framework and a Markov Decision Process based solution — to enhance competitive outcomes for MIT's Division III sports teams</li>
+                                <li>Designed and implemented automated optimization methods that strategically maximize national ranking potential, providing coaches with a data-driven scheduling advantage</li>
+                                <li>Tested and designed project for new online Sports Engineering class to help students learn about machine learning fundamentals</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Machine Learning Engineer Intern</span>
+                                <span class="item-date">June 2025 - Aug 2025</span>
+                            </div>
+                            <div class="item-subtitle">WonderBotz<span class="item-location">Princeton, NJ</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <p>
+                                Assisted in building responsive web applications and implementing new features. 
+                                Participated in code reviews and contributed to improving development processes.
+                            </p>
+                            <ul>
+                                <li>Researched, evaluated, and benchmarked open-source machine learning models to identify scalable replacements for existing automation systems</li>
+                                <li>Designed and implemented a document processing solution through Azure that enhanced internal business automation workflows and reduced reliance on legacy tools</li>
+                                <li>Improved document data extraction accuracy by 15% through fine-tuning open-source visual language models on company datasets</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Undergraduate Researcher</span>
+                                <span class="item-date">Feb 2024 - Jun 2025</span>
+                            </div>
+                            <div class="item-subtitle">MIT Immersive Japanese Language Acquisition Experience <span class="item-location">Cambridge, MA</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <!-- <p>
+                                Worked on a new project to build an AI health companion that can answer user questions about health and wellness.
+                            </p> -->
+                            <ul>
+                                <li>Worked with 3 lab partners to create a virtual environment allowing users to converse with AI avatars in Unity</li>
+                                <li>Led work to create custom avatars using user images through C# programs</li>
+                                <li>Developed automated avatar creating scripts using C# in Unity and Blender</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Software Engineer Intern</span>
+                                <span class="item-date">June 2024 - Aug 2024</span>
+                            </div>
+                            <div class="item-subtitle">Bokksu<span class="item-location">Tokyo, JP</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <p>
+                                Assisted in building responsive web applications and implementing new features. 
+                                Helped with new SEO initiatives to increase web traffic
+                            </p>
+                            <ul>
+                                <li>Enhanced website visibility by analyzing 100,000+ product data points and implementing optimized keywords, driving stronger search engine rankings</li>
+                                <li>Streamlined e-commerce operations by developing dynamic Shopify content blocks with HTML/CSS, enabling faster designer updates for seasonal campaigns</li>
+                                <li>Pioneered the integration of generative AI for marketing, producing new image and video assets that reduced reliance on external creative resources</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">AI Engineer Intern</span>
+                                <span class="item-date">June 2024 - Aug 2024</span>
+                            </div>
+                            <div class="item-subtitle">HaiMirai<span class="item-location">Tokyo, JP</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <p>
+                                Worked on a new project to build an AI health companion that can answer user questions about health and wellness.
+                            </p>
+                            <ul>
+                                <li>Finetuned a custom intent classifier from Hugging Face using PyTorch to accurately categorize 7 types of health-related user queries, improving the AI companion's response precision</li>
+                                <li>Architected a multi-agent backend system for a demo health application, enabling scalable interactions and supporting pitches to venture capital investors</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Undergraduate Researcher</span>
+                                <span class="item-date">Jun 2023 - Jun 2024</span>
+                            </div>
+                            <div class="item-subtitle">MIT Research Laboratory of Electronics: Speech Errors Analytics Project <span class="item-location">Cambridge, MA</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <!-- <p>
+                                Worked on a new project to build an AI health companion that can answer user questions about health and wellness.
+                            </p> -->
+                            <ul>
+                                <li>Collected audio recording data from 5 participants using forced aligner algorithms through python and audio analysis application Praat</li>
+                                <li>Created automated excel sheet that web scraped online databases for more than 1,000 data points</li>
+                                <li>Spearheaded research into detecting speech errors using utterance duration using python</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Undergraduate Researcher</span>
+                                <span class="item-date">Sep 2023 - Jan 2024</span>
+                            </div>
+                            <div class="item-subtitle">MIT D-Lab Medical Diagnostic Smart Mirror Project<span class="item-location">Cambridge, MA</span></div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <!-- <p>
+                                Worked on a new project to build an AI health companion that can answer user questions about health and wellness.
+                            </p> -->
+                            <ul>
+                                <li>Worked on a team of 2 to design and build a smart mirror from scratch using a raspberry pi</li>
+                                <li>Developed camera to remotely calculate heart rate of a user with libraries OpenCV and MediaPipe</li>
+                                <li>Presented research on NHK, the Japan Broadcasting Corporation </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="leadership">
+                <h2>leadership</h2>
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Co-President</span>
+                                <span class="item-date">Sep 2024 - Present</span>
+                            </div>
+                            <div class="item-subtitle">MIT Japanese Society of Undergraduates</div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <p>
+                                Leading a team of 15 members to organize cultural events, language exchange programs, and 
+                                community outreach initiatives to promote Japanese culture on campus.
+                            </p>
+                            <ul>
+                                <li>Organize bi-weekly club meetings, club events, and Japanese language learning dinner tables</li>
+                                <li>Mentor younger members from each position in doing their duties</li>
+                                <li>Help organize MIT campus tours for Japanese high school tour groups</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-summary" onclick="toggleItem(this)">
+                        <div class="item-main-info">
+                            <div class="item-header">
+                                <span class="item-title">Rush Chair</span>
+                                <span class="item-date">Feb 2024 - Dec 2024</span>
+                            </div>
+                            <div class="item-subtitle">Pi Lambda Phi Fraternity</div>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-description">
+                            <p>
+                                Organized and led recruitment efforts for the fraternity, resulting in a 15% increase in new members.
+                            </p>
+                            <ul>
+                                <li>Organized events for over 300 potential new members and organized funds between transportation and projects to maintain a budget of $20,000</li>
+                                <li>Led the creation of new policies for voting to optimize time and facilitated discussion within the fraternity of 40 people</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2>projects</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+        <div class="project-title">Project One</div>
+        <div class="project-date">Jan 2024 - May 2024</div>
+    </div>
+                        <div class="project-description">
+                            A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.
+                        </div>
+                        <div class="project-links">
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Project One', ['A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.', '\n \nthis is the second paragraph'], 'Website.mov')">Demo</a>
+                            <a href="#" class="project-btn github-btn">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+        <div class="project-title">Project Two</div>
+        <div class="project-date">Sep 2023 - Dec 2023</div>
+    </div>
+                        <div class="project-description">
+                            An open-source tool that helps developers streamline their workflow and increase productivity.
+                        </div>
+                        <div class="project-links">
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Project Two', 'An open-source tool that helps developers streamline their workflow and increase productivity.', 'https://via.placeholder.com/400x180.png')">Demo</a>
+                            <a href="#" class="project-btn github-btn">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+        <div class="project-title">Project Three</div>
+        <div class="project-date">Jun 2022 - Aug 2022</div>
+    </div>
+                        <div class="project-description">
+                            A creative project that combines design and functionality to deliver an exceptional user experience.
+                        </div>
+                        <div class="project-links">
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Project Three', 'A creative project that combines design and functionality to deliver an exceptional user experience.', 'https://via.placeholder.com/400x180.png')">Demo</a>
+                            <a href="#" class="project-btn github-btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>skills</h2>
+                <div class="skills">
+                    <div class="skill">Python</div>
+                    <div class="skill">SQL</div>
+                    <div class="skill">MATLAB</div>
+                    <div class="skill">R</div>
+                    <div class="skill">Java</div>
+                    <div class="skill">JavaScript</div>
+                    <div class="skill">HTML/CSS</div>
+                    <div class="skill">C#</div>
+                    <div class="skill">C++</div>
+                    <div class="skill">PyTorch</div>
+                    <div class="skill">TensorFlow</div>
+                    <div class="skill">Pandas</div>
+                    <div class="skill">React</div>
+                    <div class="skill">Microsoft Azure</div>
+                    <div class="skill">Unity</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="contact-links">
+            <a href="mailto:bobbyalbani0524@gmail.com">email</a>
+            <a href="https://linkedin.com/in/robert-albani" target="_blank">linkedin</a>
+            <a href="https://github.com/bhirokia" target="_blank">github</a>
+        </div>
+        <p class="copyright">2025 Robert Albani</p>
+    </footer>
+
+    <!-- Modal for project details -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-media" id="modalMedia">
+                <div class="modal-media-placeholder">// media preview</div>
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title" id="modalTitle">Project Title</h3>
+                <p class="modal-description" id="modalDescription">Project description goes here.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleItem(element) {
+            const item = element.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            // Close all items in the same section
+            const section = item.closest('section');
+            section.querySelectorAll('.item').forEach(i => i.classList.remove('active'));
+            
+            // Toggle current item
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = target.offsetTop - navHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Update active nav link
+                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navHeight = document.querySelector('nav').offsetHeight;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - navHeight - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                    document.querySelector(`nav a[href="#${section.id}"]`)?.classList.add('active');
+                }
+            });
+        });
+
+        // Convert description (string or array) to safe HTML with paragraphs and <br> for single newlines
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function formatDescription(desc) {
+            if (!desc && desc !== '') return '';
+            if (Array.isArray(desc)) {
+                return desc.map(p => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`).join('');
+            }
+            const text = String(desc);
+            // Split into paragraphs on one or more blank lines
+            const paragraphs = text.split(/\n\s*\n/);
+            return paragraphs.map(p => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`).join('');
+        }
+
+        function openModal(title, description, mediaUrl) {
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalMedia = document.getElementById('modalMedia');
+            modalTitle.textContent = title;
+            // Use formatted HTML so multiline strings and paragraphs render correctly
+            modalDescription.innerHTML = formatDescription(description);
+            // Handle media
+            if (mediaUrl) {
+                const isVideo = mediaUrl.match(/\.(mp4|webm|ogg|mov)$/i);
+                const isImage = mediaUrl.match(/\.(jpg|jpeg|png|gif|webp|png)$/i);
+                if (isVideo) {
+                    // muted attribute ensures video is silent by default
+                    modalMedia.innerHTML = `<video controls muted src="${mediaUrl}" style="max-width:100%;max-height:400px;"></video>`;
+                } else if (isImage) {
+                    modalMedia.innerHTML = `<img src="${mediaUrl}" alt="${title}" style="max-width:100%;max-height:400px;border-radius:6px;">`;
+                } else {
+                    modalMedia.innerHTML = '<div class="modal-media-placeholder">// media preview</div>';
+                }
+                // ensure media container is visible when content is present
+                modalMedia.style.display = '';
+            } else {
+                // no media: clear media container so only title/description show
+                modalMedia.innerHTML = '';
+                modalMedia.style.display = 'none';
+            }
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            const modalMedia = document.getElementById('modalMedia');
+            // pause and unload any video to ensure it's silent/stopped
+            const video = modalMedia.querySelector('video');
+            if (video) {
+                try {
+                    video.pause();
+                    video.removeAttribute('src');
+                    if (typeof video.load === 'function') video.load();
+                } catch (e) {
+                    // ignore
+                }
+            }
+            // clear media content so next open without media shows only title/description
+            modalMedia.innerHTML = '';
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
