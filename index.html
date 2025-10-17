@@ -504,6 +504,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            max-height: 80vh;
+            overflow: hidden;
         }
         .modal-close {
             position: absolute;
@@ -550,6 +552,15 @@
         /* hide media container when it has no content */
         .modal-media:empty {
             display: none;
+        }
+
+        .modal-body {
+            width: 100%;
+            /* allow the text area to scroll if content is long */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            flex: 1 1 auto;
+            padding-right: 8px; /* space for scrollbar */
         }
 
         @keyframes fadeIn {
@@ -1076,8 +1087,8 @@
             <div class="modal-media" id="modalMedia">
                 <div class="modal-media-placeholder">// media preview</div>
             </div>
+            <h3 class="modal-title" id="modalTitle">Project Title</h3>
             <div class="modal-body">
-                <h3 class="modal-title" id="modalTitle">Project Title</h3>
                 <p class="modal-description" id="modalDescription">Project description goes here.</p>
             </div>
         </div>

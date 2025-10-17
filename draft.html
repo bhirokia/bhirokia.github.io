@@ -463,6 +463,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            max-height: 80vh;
+            overflow: hidden;
         }
         .modal-close {
             position: absolute;
@@ -509,6 +511,16 @@
         /* hide media container when it has no content so modal shows only title + description */
         .modal-media:empty {
             display: none;
+        }
+
+        .modal-body {
+            width: 100%;
+            /* allow the text area to scroll if content is long */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            /* take remaining space inside modal-content so only this area scrolls */
+            flex: 1 1 auto;
+            padding-right: 8px; /* space for scrollbar */
         }
 
         footer {
@@ -981,41 +993,99 @@
                 <div class="project-grid">
                     <div class="project-card">
                         <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
-        <div class="project-title">Project One</div>
-        <div class="project-date">Jan 2024 - May 2024</div>
-    </div>
+                            <div class="project-title">NBA Project</div>
+                            <div class="project-date">2025</div>
+                        </div>
                         <div class="project-description">
-                            A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.
+                            Developed a machine learning model to classify NBA player ball touches for better player tracking analysis and quicker officiating. The model uses multimodal data inputs to achieve high accuracy in real-time classification.
                         </div>
                         <div class="project-links">
-                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Project One', ['A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.', '\n \nthis is the second paragraph'], 'Website.mov')">Demo</a>
-                            <a href="#" class="project-btn github-btn">GitHub</a>
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('NBA Project', ['I worked on a team of 6 on a project to enhance the accuracy and reliability of in-game event detection in professional basketball. We set out to explore how a smart, instrumented basketball could support real-time decision-making in scenarios where human judgment is limited by speed, visibility, or replay quality. Our focus was on understanding how physical interactions with the ball could be reliably identified during common but hard-to-judge moments of play.', ' \n \n To meet this goal, we developed a model capable of recognizing a range of ball contact events based on patterns observed during testing. Our efforts centered on distinguishing different types of touches and evaluating how consistently these could be identified across realistic conditions. Rather than diving into technical implementation details, we emphasized demonstrating feasibility, measuring performance, and laying the groundwork for future refinement and deployment at scale.', ''])">Description</a>
+                            <!-- <a href="#">GitHub</a> -->
                         </div>
                     </div>
+
                     <div class="project-card">
                         <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
-        <div class="project-title">Project Two</div>
-        <div class="project-date">Sep 2023 - Dec 2023</div>
-    </div>
+                            <div class="project-title">Visually Interpreted Animal Sounds</div>
+                            <div class="project-date">2025</div>
+                        </div>
                         <div class="project-description">
-                            An open-source tool that helps developers streamline their workflow and increase productivity.
+                            This project developed a model that generates animal sounds from silent wildlife videos by using a CNN-RNN pipeline trained on a filtered subset of the VGG-Sound dataset. The system predicts spectrograms from visual input to help supplement ecological footage that lacks audio.
                         </div>
                         <div class="project-links">
-                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Project Two', 'An open-source tool that helps developers streamline their workflow and increase productivity.', 'https://via.placeholder.com/400x180.png')">Demo</a>
-                            <a href="#" class="project-btn github-btn">GitHub</a>
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Visually Interpreted Animal Sounds', ['I worked on a project to predict animal sounds from silent video footage, addressing a common limitation in wildlife camera trap recordings that typically lack audio. We used a filtered subset of the VGG-Sound dataset containing around 37,000 animal-related videos from YouTube, and built a model combining a pre-trained ResNet-34 convolutional neural network with a recurrent neural network (LSTM) to generate audio spectrograms from visual input. The architecture extracted spatial features from video frames and then used temporal modeling to predict corresponding sound patterns. We implemented a three-phase fine-tuning strategy, progressively unfreezing different layers of the network while training for 15 epochs total, ultimately achieving about 60% accuracy on our test set.', '\nOur results showed promise but also revealed significant challenges. While we successfully reduced mean squared error and loudness error during training, the spectral centroid loss remained largely unchanged, indicating difficulty in capturing fine-grained audio details. The predicted spectrograms exhibited recognizable temporal patterns but often lacked the sharpness and clarity of the original recordings—for instance, sharp chirping sounds came out muffled and less rhythmic. We faced practical limitations including YouTube download restrictions that forced us to use multiple accounts, memory constraints that limited our batch size to just two videos, and the reality that our YouTube-sourced dataset contained many domestic pet videos rather than true wildlife footage. Despite these challenges, the project demonstrated the feasibility of using visual-to-audio prediction for ecological monitoring and laid groundwork for future improvements with more representative datasets and extended training.'])">Description</a>
+                            <a href="#">GitHub</a>
                         </div>
                     </div>
+
                     <div class="project-card">
                         <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
-        <div class="project-title">Project Three</div>
-        <div class="project-date">Jun 2022 - Aug 2022</div>
-    </div>
+                            <div class="project-title">Meal Plan Optimizer</div>
+                            <div class="project-date">2024</div>
+                        </div>
                         <div class="project-description">
-                            A creative project that combines design and functionality to deliver an exceptional user experience.
+                            We created a machine learning-enabled meal planning tool that generates diverse, high-quality meal plans tailored to user-defined nutritional requirements. By combining recipe sentiment analysis, meal type classification, and constrained optimization, the system balances health, taste, and variety across a set period.
                         </div>
                         <div class="project-links">
-                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Project Three', 'A creative project that combines design and functionality to deliver an exceptional user experience.', 'https://via.placeholder.com/400x180.png')">Demo</a>
-                            <a href="#" class="project-btn github-btn">GitHub</a>
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Meal Plan Optimizer', ['I worked on developing a meal planning tool that helps people meet their nutritional goals while actually enjoying the food they eat. We used a dataset of over 500,000 recipes with more than 1.2 million reviews from food.com, which we filtered down to about 240,000 usable recipes after removing incomplete entries and anomalies. The core challenge we addressed was that most meal planning tools focus solely on nutrition and ignore taste and variety, leading to bland, repetitive meal plans that people struggle to stick with. Our approach combined machine learning with constrained optimization to generate meal plans that not only hit specific calorie and macronutrient targets but also maximized both the quality and diversity of meals.', '\nOur methodology involved several key components that I helped develop. We normalized recipe ratings using sentiment analysis on user reviews to get beyond the inflated 5-star ratings that dominate most recipe databases. We used text embeddings and k-means clustering to measure recipe similarity, allowing us to ensure variety across a multi-day meal plan. I also worked on training a logistic regression model that achieved 95% accuracy in classifying recipes as breakfast, lunch, or dinner. Finally, we implemented a linear programming optimization that balanced all these factors—nutritional constraints, adjusted ratings, meal type distribution, and diversity through hamming distance calculations. The result was a system that could generate diverse, nutritious, and highly-rated two-week meal plans in under 5 seconds.'], 'meal_planning.png')">Demo</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+                            <div class="project-title">Omoide Blog</div>
+                            <div class="project-date">2023</div>
+                        </div>
+                        <div class="project-description">
+                            This is a four-page React blog platform that allows users to share personal experiences involving war and other life tragedies. It was initially created as a demo to share my grandmother's story during World War II in Japan.
+                        </div>
+                        <div class="project-links">
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Omoide Blog', ['I created a website blog for my Project Based Japanese Learning class where users could share personal experiences with war and tragedy. Inspired by my grandmother who lived through World War II in Japan, I wanted to build a platform that would help people develop a more well-rounded understanding of global conflicts through personal narratives. I built the site using React with four main pages: a home page displaying user posts, an info page with historical war information, a stories page for detailed post views, and a write page where users could contribute their own experiences.', '\nOne of the biggest challenges I faced was managing CSS styling and object alignment in React. To solve this, I developed a systematic naming and ordering convention for my components that made it much easier to maintain consistent styling across pages. As my first large React project, I learned a lot about configuring different layouts and structuring a multi-page application. The experience significantly improved my front-end development skills and gave me hands-on practice with Reacts component-based architecture.'], 'Website.mov')">Demo</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+                            <div class="project-title">Exploring History Game Demo</div>
+                            <div class="project-date">2023</div>
+                        </div>
+                        <div class="project-description">
+                            This is a Unity and Blender video game offering an interactive exploration of a traditional pre-World War II Japanese house. Players navigate the space using standard movement controls and can examine objects up close to trigger informational slides about their historical use.
+                        </div>
+                        <div class="project-links">
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Exploring History Game Demo', 'A full-stack web application built with React and Node.js that solves a specific problem in an innovative way.', 'shortened_gameplay.mov')">Demo</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+                            <div class="project-title">Smart Mirror</div>
+                            <div class="project-date">2022</div>
+                        </div>
+                        <div class="project-description">
+                            I created a smart mirror using a Raspberry Pi, two-way mirror, and monitor to display information such as messages, weather, and news alongside the user's reflection. Hardware integration, custom framing, and use of the MagicMirror API enabled a clean, self-contained display system.
+                        </div>
+                        <div class="project-links">
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('Smart Mirror', ['I created a smart mirror for my Machine Learning independent study in 2022. A smart mirror uses a two-way mirror with a screen behind it, allowing users to see both their reflection and digital information simultaneously. I built the project using a Raspberry Pi, a monitor, and a two-way mirror, and used an open-source API called MagicMirror to display various information like messages, weather forecasts, and recent news on the screen. The software side was straightforward, but the real challenge came in the physical construction and assembly of the mirror itself.', 'The biggest obstacle I faced was designing a frame that could securely hold the monitor, Raspberry Pi, and battery without everything falling apart. I solved this by placing foam pads around the frame to support the monitor and using wedges to keep it stable. For the electronics, I 3D printed a custom case for the Raspberry Pi and battery, then screwed it directly into the frames interior. This was my first in-depth project working with a Raspberry Pi, and it gave me valuable hands-on experience with both hardware integration and physical design. The project was an excellent introduction to building things by hand and learning how to display programs on embedded systems.'], 'smart_mirror.png')">Demo</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+                            <div class="project-title">K-Means Clustering Visualization Mini-Demo</div>
+                            <div class="project-date">2021</div>
+                        </div>
+                        <div class="project-description">
+                            This program visualizes the k-means clustering algorithm using Processing to animate how data points group around shifting centers. The visualization was created for a demonstration in our programming club in high school.
+                        </div>
+                        <div class="project-links">
+                            <a href="javascript:void(0)" class="project-btn github-btn" onclick="openModal('K-Means Clustering Visualization Mini-Demo', ['I created a program in 2021 through my schools Coding Club that visualized the k-means clustering algorithm. After taking an Artificial Intelligence class, we decided to explore machine learning concepts in the club, and I chose to focus on k-means clustering—an unsupervised learning algorithm that groups similar data points together. I built the visualization using Processing, a digital visualization software, which allowed me to create an interactive demonstration of how the algorithm works in real-time.', 'My program displayed a grid of points with several center points, each claiming a region identified by color. The center points would iteratively shift based on the average distance from all points in their region until they reached optimal positions. This project was crucial for deepening my understanding of unsupervised machine learning. Having only worked with supervised classification models in class that required human-labeled data, it was fascinating to see how an algorithm could learn patterns and structure data on its own without any pre-classified examples. The hands-on visualization helped me grasp the mechanics of iterative optimization in machine learning.'], 'k-means-clustering.mov')">Demo</a>
+                            <a href="#">GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -1060,8 +1130,8 @@
             <div class="modal-media" id="modalMedia">
                 <div class="modal-media-placeholder">// media preview</div>
             </div>
+            <h3 class="modal-title" id="modalTitle">Project Title</h3>
             <div class="modal-body">
-                <h3 class="modal-title" id="modalTitle">Project Title</h3>
                 <p class="modal-description" id="modalDescription">Project description goes here.</p>
             </div>
         </div>
