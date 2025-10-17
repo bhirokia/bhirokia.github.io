@@ -359,24 +359,6 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            /* ensure cards have some minimum height so buttons can sit at the bottom */
-            min-height: 220px;
-        }
-
-        /* make description grow to fill available space so links stay at bottom */
-        .project-description {
-            font-size: 0.9em;
-            color: #94a3b8;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            flex: 1 1 auto;
-        }
-
-        /* push links to bottom */
-        .project-links {
-            display: flex;
-            gap: 10px;
-            margin-top: auto;
         }
 
         .project-card::before {
@@ -425,13 +407,72 @@
             color: #94a3b8;
             line-height: 1.6;
             margin-bottom: 15px;
-            flex: 1 1 auto;
         }
 
         .project-links {
             display: flex;
             gap: 10px;
             margin-top: auto;
+        }
+
+        .project-links a {
+            font-family: 'Space Mono', monospace;
+            color: #4fc0ff;
+            text-decoration: none;
+            font-size: 0.85em;
+            padding: 6px 12px;
+            border: 1px solid #4fc0ff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            background: rgba(79, 192, 255, 0.1);
+            color: #fafafa;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 40px 40px;
+            border-top: 1px solid #1a1a1a;
+            margin-top: 80px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            font-family: 'Space Mono', monospace;
+            color: #4fc0ff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+        }
+
+        .contact-links a:hover {
+            color: #fafafa;
+            border-color: #4fc0ff;
+            background: rgba(79, 192, 255, 0.1);
+        }
+
+        .copyright {
+            font-family: 'Space Mono', monospace;
+            color: #64748b;
+            font-size: 0.85em;
+            margin-top: 25px;
+        }
+
+        .copyright::before {
+            content: '// ';
         }
 
         /* Modal styles */
@@ -508,7 +549,7 @@
             font-size: 1em;
         }
 
-        /* hide media container when it has no content so modal shows only title + description */
+        /* hide media container when it has no content */
         .modal-media:empty {
             display: none;
         }
@@ -518,53 +559,8 @@
             /* allow the text area to scroll if content is long */
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
-            /* take remaining space inside modal-content so only this area scrolls */
             flex: 1 1 auto;
             padding-right: 8px; /* space for scrollbar */
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 40px 40px;
-            border-top: 1px solid #1a1a1a;
-            margin-top: 80px;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .contact-links a {
-            font-family: 'Space Mono', monospace;
-            color: #4fc0ff;
-            text-decoration: none;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 8px 16px;
-            border: 1px solid transparent;
-            border-radius: 3px;
-        }
-
-        .contact-links a:hover {
-            color: #fafafa;
-            border-color: #4fc0ff;
-            background: rgba(79, 192, 255, 0.1);
-        }
-
-        .copyright {
-            font-family: 'Space Mono', monospace;
-            color: #64748b;
-            font-size: 0.85em;
-            margin-top: 25px;
-        }
-
-        .copyright::before {
-            content: '// ';
         }
 
         @keyframes fadeIn {
@@ -636,45 +632,17 @@
                 gap: 20px;
             }
         }
-
-        .project-links a {
-            font-family: 'Space Mono', monospace;
-            color: #4fc0ff;
-            text-decoration: none;
-            font-size: 0.85em;
-            padding: 6px 12px;
-            border: 1px solid #4fc0ff;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        /* Restore button classes so <a class="project-btn github-btn"> looks like the original buttons */
-        .project-btn, .github-btn {
-            font-family: 'Space Mono', monospace;
-            color: #4fc0ff;
-            text-decoration: none;
-            font-size: 0.85em;
-            padding: 6px 12px;
-            border: 1px solid #4fc0ff;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-            background: transparent;
-            display: inline-block;
-        }
-        .project-btn:hover, .github-btn:hover, .project-links a:hover {
-            background: rgba(79, 192, 255, 0.1);
-            color: #fafafa;
-        }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
             <a href="#about">about</a>
+            <a href="#education">education</a>
             <a href="#experience">experience</a>
             <a href="#leadership">leadership</a>
-            <a href="#education">education</a>
             <a href="#projects">projects</a>
+            <a href="#languages">languages</a>
             <a href="#skills">skills</a>
         </div>
     </nav>
@@ -724,7 +692,7 @@
                             </p> -->
                             <ul>
                                 <li>GPA: 4.7/5.0</li>
-                                <li>Relevant Coursework: Data Structures, Algorithms, Database Systems, Web Development</li>
+                                <!-- <li>Relevant Coursework: Data Structures, Algorithms, Database Systems, Web Development</li> -->
                                 <li>Minors: Mechanical Engineering, Music</li>
                             </ul>
                         </div>
@@ -1111,19 +1079,18 @@
                     <div class="skill">Unity</div>
                 </div>
             </section>
+
+            <section id="languages">
+                <h2>languages</h2>
+                <div class="skills languages">
+                    <div class="skill">English (native)</div>
+                    <div class="skill">Japanese (JLPT N2)</div>
+                    <div class="skill">Spanish (conversational)</div>
+                </div>
+            </section>
         </main>
     </div>
 
-    <footer>
-        <div class="contact-links">
-            <a href="mailto:bobbyalbani0524@gmail.com">email</a>
-            <a href="https://linkedin.com/in/robert-albani" target="_blank">linkedin</a>
-            <a href="https://github.com/bhirokia" target="_blank">github</a>
-        </div>
-        <p class="copyright">2025 Robert Albani</p>
-    </footer>
-
-    <!-- Modal for project details -->
     <div class="modal" id="projectModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">×</button>
@@ -1136,6 +1103,15 @@
             </div>
         </div>
     </div>
+
+    <footer>
+        <div class="contact-links">
+            <a href="mailto:bobbyalbani0524@gmail.com">email</a>
+            <a href="https://linkedin.com/in/robert-albani" target="_blank">linkedin</a>
+            <a href="https://github.com/bhirokia" target="_blank">github</a>
+        </div>
+        <p class="copyright">2025 Robert Albani</p>
+    </footer>
 
     <script>
         function toggleItem(element) {
@@ -1187,7 +1163,6 @@
             });
         });
 
-        // Convert description (string or array) to safe HTML with paragraphs and <br> for single newlines
         function escapeHtml(str) {
             return String(str)
                 .replace(/&/g, '&amp;')
@@ -1214,7 +1189,6 @@
             const modalDescription = document.getElementById('modalDescription');
             const modalMedia = document.getElementById('modalMedia');
             modalTitle.textContent = title;
-            // Use formatted HTML so multiline strings and paragraphs render correctly
             modalDescription.innerHTML = formatDescription(description);
             // Handle media
             if (mediaUrl) {
